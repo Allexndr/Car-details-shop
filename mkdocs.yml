@@ -1,0 +1,141 @@
+site_name: Car Details Shop Documentation
+site_description: Документация для демо-версии современного магазина автозапчастей
+site_author: Allexndr
+site_url: https://allexndr.github.io/Car-details-shop/
+
+repo_name: Allexndr/Car-details-shop
+repo_url: https://github.com/Allexndr/Car-details-shop
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: ru
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Переключить цветовую схему
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Переключить цветовую схему
+
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+
+  icon:
+    repo: fontawesome/brands/github
+    edit: fontawesome/solid/pencil
+    view: fontawesome/solid/eye
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Allexndr
+    - icon: fontawesome/brands/telegram
+      link: https://t.me/allexndr_dev
+    - icon: fontawesome/solid/envelope
+      link: mailto:alex@autoparts.ru
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - codehilite
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
+      slug_sequence: true
+      tabs: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+nav:
+  - Главная: index.md
+  - Установка:
+    - Быстрый старт: installation/quickstart.md
+    - Требования: installation/requirements.md
+    - Настройка: installation/setup.md
+  - Руководство:
+    - Основы: guide/basics.md
+    - Страницы: guide/pages.md
+    - Стили: guide/styling.md
+    - JavaScript: guide/javascript.md
+  - API:
+    - Views: api/views.md
+    - Models: api/models.md
+    - URLs: api/urls.md
+  - Разработка:
+    - Структура проекта: development/structure.md
+    - Добавление страниц: development/adding-pages.md
+    - Кастомизация: development/customization.md
+    - Тестирование: development/testing.md
+  - Развертывание:
+    - Локально: deployment/local.md
+    - Vercel: deployment/vercel.md
+    - Heroku: deployment/heroku.md
+    - Docker: deployment/docker.md
+  - FAQ: faq.md
+  - Contributing: contributing.md
+  - Changelog: changelog.md
+
+plugins:
+  - search
+  - minify:
+      minify_html: true
+  - git-revision-date-localized:
+      enable_creation_date: true
+  - git-authors
+  - section-index
+
+docs_dir: docs
+site_dir: site

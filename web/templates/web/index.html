@@ -1,244 +1,145 @@
 {% extends 'web/main.html' %}
 {% load static %}
-{% block title_page %}
-  <title>Главная страница</title>
-{% endblock title_page %}
+{% block title_page %}<title>Главная • AutoParts</title>{% endblock title_page %}
 {% block content %}
-  <header class="header" id="header">
-    <!--header-start-->
-    <div class="container">
-      <figure class="logo animated fadeInDown delay-07s">
-        <a href="#"><img src="{% static 'img/main_logo.png' %}" alt=""></a>
-      </figure>
-      <h1 class="animated fadeInDown delay-07s">Здравствуйте,вы попали на сайт по продаже автозапчастей</h1>
-      <ul class="we-create animated fadeInUp delay-1s">
-        <li>По всем вопросам обращайтесь по номерам указанным ниже</li>
-      </ul>
-      <a class="link animated fadeInUp delay-1s servicelink" href="#service">Спуститься ниже</a>
-    </div>
-  </header>
-  <!--header-end-->
-  <section class="main-section" id="service">
-    <!--main-section-start-->
-    <div class="container">
-      <h2>Категории</h2>
-      <h6>У нас большое разнообразие товаров</h6>
-      <div class="row">
-        <div class="col-lg-4 col-sm-6 wow fadeInLeft delay-05s">
-          <div class="service-list">
-            <div class="service-list-col1">
-              <i class="fa fa-truck" aria-hidden="true"></i>
 
-            </div>
-            <div class="service-list-col2">
-              <h3>Детали кузова</h3>
-              <p>бамперы, двери, капоты, грузовые отсеки и другие части</p>
-            </div>
-          </div>
-          <div class="service-list">
-            <div class="service-list-col1">
-              <i class="fa fa-gear"></i>
-            </div>
-            <div class="service-list-col2">
-              <h3>Детали двигателя и навесного оборудования</h3>
-              <p>поршни, кольца, шатуны,распределительные и
-                коленчатые валы, клапаны, ремни, коллекторы,ремкоплект</p>
-            </div>
-          </div>
-          <div class="service-list">
-            <div class="service-list-col1">
-              <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
-
-            </div>
-            <div class="service-list-col2">
-              <h3>Элементы трансмиссии</h3>
-              <p>выжимные подпишники,корзины,диски сцепления</p>
-            </div>
-          </div>
-          <div class="service-list">
-            <div class="service-list-col1">
-              <i class="fa fa-medkit"></i>
-            </div>
-            <div class="service-list-col2">
-              <h3>Акссесуары и расходники</h3>
-              <p>Аптечка,освежители воздуха и тд<p>
-            </div>
-          </div>
-        </div>
-        <figure class="col-lg-8 col-sm-6  text-right wow fadeInUp delay-02s">
-          <img src="{% static 'img/details.png' %}" alt="">
-        </figure>
-
-      </div>
-    </div>
-  </section>
-  <!--main-section-end-->
-  <section class="main-section alabaster">
-    <!--main-section alabaster-start-->
-    <div class="container">
-      <div class="row">
-        <figure class="col-lg-5 col-sm-4 wow fadeInLeft">
-          <img src="{% static 'img/pluse.png' %}" alt="">
-        </figure>
-        <div class="col-lg-7 col-sm-8 featured-work">
-          <h2>Наши плюсы</h2>
-          <P class="padding-b">Мы являемся новичками на рынке,но уже имеем кучу положительных отзывов от простых покупателей,до крупных закупщиков автодеталями для автомобилей и другой техники</P>
-          <div class="featured-box">
-            <div class="featured-box-col1 wow fadeInRight delay-02s">
-              <i class="fa fa-magic"></i>
-            </div>
-            <div class="featured-box-col2 wow fadeInRight delay-02s">
-              <h3>Высокое качество</h3>
-              <p> Гарантия срока должности и 1000 причин выбрать нас </p>
-            </div>
-          </div>
-          <div class="featured-box">
-            <div class="featured-box-col1 wow fadeInRight delay-04s">
-              <i class="fa fa-gift"></i>
-            </div>
-            <div class="featured-box-col2 wow fadeInRight delay-04s">
-              <h3>Бонусы</h3>
-              <p>В случаи непрвидвиденных обстоятельств возвращение полной стоимости покупки </p>
-            </div>
-          </div>
-          <div class="featured-box">
-            <div class="featured-box-col1 wow fadeInRight delay-06s">
-              <i class="fa fa-dashboard"></i>
-            </div>
-            <div class="featured-box-col2 wow fadeInRight delay-06s">
-              <h3>Быстрая доставка</h3>
-              <p>Наша служба доставки,доставит вам товар до двери в кратчайшие сроки</p>
-            </div>
-          </div>
-          <a class="Learn-More" href="#">Learn More</a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!--main-section alabaster-end-->
-  <section class="main-section client-part" id="client">
-    <!--main-section client-part-start-->
-    <div class="container">
-      <b class="quote-right wow fadeInDown delay-03"><i class="fa fa-quote-right"></i></b>
-      <div class="row">
-        <div class="col-lg-12">
-          <p class="client-part-haead wow fadeInDown delay-05">Ребята молодцы,закупаем запчасти не выходя из офиса,служба поддержки работает на ура!</p>
-        </div>
-      </div>
-      <ul class="client wow fadeIn delay-05s">
-        <li><a href="#">
-              <img src="{% static 'img/ilon.jpg' %}" alt="">
-                <h3>Илон Маск </h3>
-                <span>Менеджер по ремонту и обслуживанию автомобилей,главный механик в автопарке Яндекс </span>
-            </a></li>
-      </ul>
-    </div>
-  </section>
-  <main-section client-part-end>
-  < <div class="c-logo-part">
-    <div class="container">
-      <ul>
-        <li><a href="#"><img src="{% static 'img/toyota.png' %}" alt=""></a></li>
-        <li><a href="#"><img src="{% static 'img/kolesa.png' %}" alt=""></a></li>
-        <li><a href="#"><img src="{% static 'img/kia.png' %}" alt=""></a></li>
-        <li><a href="#"><img src="{% static 'img/olx.png' %}" alt=""></a></li>
-        <li><a href="#"><img src="{% static 'img/mercedes.png' %}" alt=""></a></li>
-        <li><a href="#"><img src="{% static 'img/hyundai.png' %}" alt=""></a></li>
-        <li><a href="#"><img src="{% static 'img/nissan.png' %}" alt=""></a></li>
-      </ul>
-    </div>
-  </div> -->
-  <c-logo-part-end-->
-  <section class="main-section team" id="team">
-    <div class="container">
-      <h2>Наша команда</h2>
-      <h6>Каждый участник нашей команды важная шестеренка в большом механизме</h6>
-      <div class="team-leader-block clearfix">
-        <div class="team-leader-box">
-          <div class="team-leader wow fadeInDown delay-09s">
-            <div class="team-leader-shadow"><a href="#"></a></div>
-            <img src="{% static 'img/jobs.png' %}" alt="">
-
-            <ul>
-              <li><a href="#" class="fa fa-twitter"></a></li>
-              <li><a href="#" class="fa fa-facebook"></a></li>
-              <li><a href="#" class="fa fa-vk"></a></li>
-              <li><a href="#" class="fa fa-google-plus"></a></li>
-            </ul>
-          </div>
-          <h3 class="wow fadeInDown delay-09s">Стив Джобас</h3>
-          <span class="wow fadeInDown delay-09s">Главный пиар-менеджер</span>
-          <p class="wow fadeInDown delay-09s">Работать в такой компании - большой труд, но хорошие люди в компании позволяют справиться с этим трудом морально</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="business-talking">
-    <div class="container">
-      <h2>Наши контакты.</h2>
-    </div>
-  </section>
+<!-- Demo Notice Section -->
+<section class="demo-notice-section py-3" data-aos="fade-down">
   <div class="container">
-    <section class="main-section contact" id="contact">
+    <div class="demo-alert">
+      <div class="demo-alert-content">
+        <i class="fa-solid fa-info-circle me-2"></i>
+        <strong>Демо-версия:</strong> Это визитка-сайт для демонстрации возможностей технологий. 
+        Здесь кратко реализована админка, каталог товаров и современный дизайн.
+      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="row">
-        <div class="col-lg-6 col-sm-7 wow fadeInLeft">
-          <div class="contact-info-box address clearfix">
-            <h4><i class=" icon-map-marker"></i>Адрес нашего офиса:</h4>
-            <span>Казахстан,Алматы,Медеуский район <br>Гоголя 72 пятый этаж </span>
+<!-- Hero Section with Particles -->
+<section class="hero-section" data-aos="fade-up">
+  <div id="particles-js" class="particles-container"></div>
+  <div class="container text-center position-relative">
+    <div class="hero-content">
+      <div class="logo-hero mb-4" data-aos="zoom-in" data-aos-delay="200">
+        <img src="{% static 'img/main_logo.png' %}" alt="AutoParts" class="hero-logo" />
+      </div>
+      <h1 class="display-3 fw-bold hero-title mb-4" data-aos="fade-up" data-aos-delay="300">
+        Магазин автозапчастей <span class="gradient-text">AutoParts</span>
+      </h1>
+      <p class="lead hero-subtitle mb-5" data-aos="fade-up" data-aos-delay="400">
+        Надёжные детали для вашего авто. Быстро, честно, с любовью к дороге.
+      </p>
+      <div class="d-flex gap-3 justify-content-center flex-wrap" data-aos="fade-up" data-aos-delay="500">
+        <a href="{% url 'shop' %}" class="btn btn-primary btn-lg glass-btn-primary">
+          <i class="fa-solid fa-cart-shopping me-2"></i>Перейти в магазин
+        </a>
+        <a href="#features" class="btn btn-outline-light btn-lg glass-btn-outline">
+          <i class="fa-solid fa-arrow-down me-2"></i>Узнать больше
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="py-5 features-section" data-aos="fade-up" data-aos-delay="100">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="feature-card glass-card">
+          <div class="feature-icon">
+            <i class="fa-solid fa-gears"></i>
           </div>
-          <div class="contact-info-box phone clearfix">
-            <h4><i class="fa fa-phone"></i>Телефоны:</h4>
-            <span>+777777777 - общий номер службы поддержки</span>
-          </div>
-          <div class="contact-info-box email clearfix">
-            <h4><i class="fa fa-pencil"></i>почта:</h4>
-            <span>sacha.murdasov@mail.ru</span>
-          </div>
-          <div class="contact-info-box hours clearfix">
-            <h4><i class="fa fa-clock-o"></i>Рабочий график офиса:</h4>
-          </div>
-          <span><strong>Понедельник - пятница:</strong> с 8:00 - 20:00<br><strong>Суббота - воскресенье: </strong> к счастью работаем с 9:00 до 12:00</span>
-          <ul class="social-link">
-            <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-            <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-            <li class="vk"><a href="#"><i class="fa fa-vk"></i></a></li>
-            <li class="gplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-            <li class="dribbble"><a href="#"><i class="fa fa-dribbble"></i></a></li>
-          </ul>
+          <h5 class="feature-title">Широкий ассортимент</h5>
+          <p class="feature-text">От двигателя до аксессуаров — всё, что нужно вашему авто.</p>
         </div>
-        <div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
-          <div class="form">
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="feature-card glass-card">
+          <div class="feature-icon">
+            <i class="fa-solid fa-truck-fast"></i>
+          </div>
+          <h5 class="feature-title">Быстрая доставка</h5>
+          <p class="feature-text">В кратчайшие сроки привезём заказ прямо к вашему дому.</p>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="feature-card glass-card">
+          <div class="feature-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h5 class="feature-title">Гарантия качества</h5>
+          <p class="feature-text">Проверенные поставщики и поддержка клиентов 7 дней в неделю.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <div id="sendmessage">Мы приняли ваше сообщение,спасибо!</div>
-            <div id="errormessage"></div>
-            <form action="" method="post" role="form" class="contactForm">
-              <div class="form-group">
-                <input type="text" name="name" class="form-control input-text" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                <div class="validation"></div>
-              </div>
-              <div class="form-group">
-                <input type="email" class="form-control input-text" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                <div class="validation"></div>
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control input-text" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                <div class="validation"></div>
-              </div>
-              <div class="form-group">
-                <textarea class="form-control input-text text-area" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-                <div class="validation"></div>
-              </div>
-
-              <div class="text-center"><button type="submit" class="input-btn">Send Message</button></div>
-            </form>
+<!-- Why Us Section -->
+<section class="py-5 why-us-section" data-aos="fade-up" data-aos-delay="200">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-md-6 order-md-2 text-center" data-aos="fade-left" data-aos-delay="300">
+        <div class="image-container">
+          <img class="img-fluid rounded-4 shadow-lg" src="{% static 'img/details.png' %}" alt="Details" />
+        </div>
+      </div>
+      <div class="col-md-6 order-md-1" data-aos="fade-right" data-aos-delay="300">
+        <div class="content-wrapper">
+          <h2 class="fw-bold display-6 mb-4">Почему мы?</h2>
+          <p class="text-muted lead mb-4">Мы подбираем надёжные детали и делаем процесс покупки простым и приятным.</p>
+          <div class="benefits-list">
+            <div class="benefit-item">
+              <i class="fa-regular fa-circle-check benefit-icon"></i>
+              <span>Доступные цены</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fa-regular fa-circle-check benefit-icon"></i>
+              <span>Прозрачная гарантия</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fa-regular fa-circle-check benefit-icon"></i>
+              <span>Поддержка клиентов</span>
+            </div>
           </div>
         </div>
       </div>
-    </section>
-  </div>
-  <footer class="footer">
-    <div class="container">
     </div>
-  </footer>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-5 stats-section" data-aos="fade-up" data-aos-delay="400">
+  <div class="container">
+    <div class="row g-4 text-center">
+      <div class="col-md-3 col-6">
+        <div class="stat-card">
+          <div class="stat-number" data-count="1000">0</div>
+          <div class="stat-label">Довольных клиентов</div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="stat-card">
+          <div class="stat-number" data-count="5000">0</div>
+          <div class="stat-label">Товаров в каталоге</div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="stat-card">
+          <div class="stat-number" data-count="24">0</div>
+          <div class="stat-label">Часа поддержки</div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="stat-card">
+          <div class="stat-number" data-count="99">0</span>%</div>
+          <div class="stat-label">Гарантия качества</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 {% endblock content %}

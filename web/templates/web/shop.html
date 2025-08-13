@@ -1,67 +1,169 @@
 {% extends 'web/main.html' %}
 {% load static %}
-{% block title_page %}
-  <title>Магазин</title>
-{% endblock title_page %}
+{% block title_page %}<title>Магазин • AutoParts</title>{% endblock title_page %}
 {% block content %}
-  {% if user.is_authenticated %}
-    <div style="position: absolute; right: 50%; transform: translateX(50%); margin-top: 30px;">
-      <button onclick="window.location.href = {% url 'reg' %}" type="submit" class="btn btn-outline-info">Профиль</button>
-      <button onclick="window.location.href = {% url 'exit' %}" type="submit" class="btn btn-outline-info">Выход</button>
-    </div>
-  {% else %}
-    <div style="position: absolute; right: 50%; transform: translateX(50%); margin-top: 30px;">
-      <button onclick="window.location.href = {% url 'reg' %}" type="submit" class="btn btn-outline-info">Регистрация</button>
-      <button onclick="window.location.href = {% url 'login' %}" type="submit" class="btn btn-outline-info">Вход</button>
-    </div>
-  {% endif %}
-<section class="main-section paddind" id="Portfolio">
-  <!--main-section-start-->
-    <!-- <a class="btn btn-outline-secondary" style="position: absolute; float: right; margin: 0;">Регистрация</a> -->
-    <!-- <a class="btn btn-outline-secondary" style="position: absolute; float: right; margin: 0;">Вход</a> -->
-    <h2>Магазин</h2>
-    <h6>У нас большой асортимент товаров.</h6>
-    <div class="portfolioFilter">
-      <ul class="Portfolio-nav wow fadeIn delay-02s">
-        <li><a href="#" data-filter="*" class="current">Все</a></li>
-        <li><a href="#" data-filter=".branding">Двигатель</a></li>
-        <li><a href="#" data-filter=".webdesign">трансмиссия</a></li>
-        <li><a href="#" data-filter=".printdesign">кузов</a></li>
-        <li><a href="#" data-filter=".photography">Аксессуары</a></li>
-      </ul>
-    </div>
 
-  </div>
-  <div class="portfolioContainer wow fadeInUp delay-04s">
-    {% for post in pr %}
-      {% if post.availability %}
-       {% if post.group == "mobile" %}
-          <div class=" Portfolio-box branding"> <!-- Смартфоны -->
-            <a href="img/2 gilz.jpg"><img src="{{ post.img.url }}" alt=""></a>
-            <h3>{{ post.name }}</h3>
-            <p>Цена: {{ post.price }} ₽</p>
-          </div>
-       {% elif post.group == "pc" %}
-        <div class=" Portfolio-box printdesign"> <!-- Компьютеры -->
-          <a href="img/Portfolio-pic1.jpg"><img src="{{ post.img.url }}" alt=""></a>
-          <h3>{{ post.name }}</h3>
-          <p>Цена: {{ post.price }} ₽</p>
-        </div>
-       {% elif post.group == "notebook" %}
-          <div class="Portfolio-box webdesign"> <!-- Ноутбуки -->
-            <a href="img/Portfolio-pic2.jpg"><img src="{{ post.img.url }}" alt=""></a>
-            <h3>{{ post.name }}</h3>
-            <p>Цена: {{ post.price }} ₽</p>
-          </div>
-       {% else %}
-          <div class=" Portfolio-box photography"> <!-- Аксессуары -->
-            <a href="img/Portfolio-pic4.jpg"><img src="{{ post.img.url }}" alt=""></a>
-            <h3>{{ post.name }}</h3>
-            <p>Цена: {{ post.price }} ₽</p>
-          </div>
-        {% endif %}
-      {% endif %}
-    {% endfor %}
+<!-- Demo Notice Section -->
+<section class="demo-notice-section py-3" data-aos="fade-down">
+  <div class="container">
+    <div class="demo-alert">
+      <div class="demo-alert-content">
+        <i class="fa-solid fa-info-circle me-2"></i>
+        <strong>Демо-версия:</strong> Это демонстрация возможностей каталога товаров. 
+        Здесь показана работа с базой данных, фильтрация и поиск товаров.
+      </div>
+    </div>
   </div>
 </section>
+
+<section id="shop" class="py-4 shop-section" data-aos="fade-up">
+  <div class="container">
+    <!-- Header with Search -->
+    <div class="shop-header mb-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h2 class="display-6 fw-bold mb-0">Каталог</h2>
+          <p class="text-muted mb-0">Найдите нужные детали для вашего авто</p>
+        </div>
+        <div class="col-md-6">
+          <form method="get" class="search-form">
+            <div class="input-group">
+              <span class="input-group-text glass-input-group">
+                <i class="fa-solid fa-search"></i>
+              </span>
+              <input class="form-control glass-input" name="q" value="{{ q }}" placeholder="Поиск по названию или описанию..." />
+              <button class="btn btn-primary glass-btn-primary" type="submit">
+                <i class="fa-solid fa-filter me-1"></i>Фильтр
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="category-filters mb-4" data-aos="fade-up" data-aos-delay="200">
+      <div class="d-flex gap-2 flex-wrap">
+        <a href="?{% if q %}q={{ q }}&{% endif %}" class="category-filter-btn {% if not group %}active{% endif %}">
+          <i class="fa-solid fa-th-large me-2"></i>Все
+        </a>
+        <a href="?{% if q %}q={{ q }}&{% endif %}group=mobile" class="category-filter-btn {% if group == 'mobile' %}active{% endif %}">
+          <i class="fa-solid fa-gears me-2"></i>Двигатель
+        </a>
+        <a href="?{% if q %}q={{ q }}&{% endif %}group=pc" class="category-filter-btn {% if group == 'pc' %}active{% endif %}">
+          <i class="fa-solid fa-car me-2"></i>Кузов
+        </a>
+        <a href="?{% if q %}q={{ q }}&{% endif %}group=notebook" class="category-filter-btn {% if group == 'notebook' %}active{% endif %}">
+          <i class="fa-solid fa-cog me-2"></i>Трансмиссия
+        </a>
+        <a href="?{% if q %}q={{ q }}&{% endif %}group=accessories" class="category-filter-btn {% if group == 'accessories' %}active{% endif %}">
+          <i class="fa-solid fa-tools me-2"></i>Аксессуары
+        </a>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" data-aos="fade-up" data-aos-delay="300">
+      {% for post in pr %}
+        <div class="col">
+          <div class="product-card glass-card h-100">
+            <div class="product-image-container">
+              <img src="{{ post.img_url }}" class="product-image" alt="{{ post.name }}" loading="lazy" />
+              <div class="product-overlay">
+                <button class="btn btn-light btn-sm quick-view-btn" data-bs-toggle="modal" data-bs-target="#productModal" data-name="{{ post.name }}" data-img="{{ post.img_url }}" data-desc="{{ post.description }}" data-price="{{ post.price }}">
+                  <i class="fa-solid fa-eye me-1"></i>Быстрый просмотр
+                </button>
+              </div>
+            </div>
+            <div class="product-body">
+              <h5 class="product-title">{{ post.name }}</h5>
+              <p class="product-description">{{ post.description|default:'Без описания'|truncatechars:120 }}</p>
+              <div class="product-meta">
+                <div class="product-price">
+                  <span class="price-amount">{{ post.price }}</span>
+                  <span class="price-currency">₽</span>
+                </div>
+                <span class="availability-badge {% if post.availability %}in-stock{% else %}out-of-stock{% endif %}">
+                  {% if post.availability %}<i class="fa-solid fa-check me-1"></i>В наличии{% else %}<i class="fa-solid fa-times me-1"></i>Нет в наличии{% endif %}
+                </span>
+              </div>
+              <div class="product-actions">
+                <button class="btn btn-primary glass-btn-primary w-100" data-bs-toggle="modal" data-bs-target="#productModal" data-name="{{ post.name }}" data-img="{{ post.img_url }}" data-desc="{{ post.description }}" data-price="{{ post.price }}">
+                  <i class="fa-solid fa-info-circle me-2"></i>Подробнее
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <div class="col-12">
+          <div class="empty-state glass-card text-center py-5">
+            <i class="fa-solid fa-search fa-3x text-muted mb-3"></i>
+            <h4>Ничего не найдено</h4>
+            <p class="text-muted">Попробуйте изменить параметры поиска или фильтры</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Product Modal -->
+<div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content glass-modal">
+      <div class="modal-header">
+        <h5 class="modal-title" id="productTitle">Товар</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Demo Notice in Modal -->
+        <div class="demo-notice-modal mb-3">
+          <div class="demo-notice-content">
+            <i class="fa-solid fa-info-circle me-2"></i>
+            <small><strong>Демо:</strong> Это демонстрация модального окна товара</small>
+          </div>
+        </div>
+        
+        <div class="row g-4 align-items-start">
+          <div class="col-md-6">
+            <div class="modal-image-container">
+              <img id="productImg" class="img-fluid rounded-3" alt="" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="product-details">
+              <p id="productDesc" class="text-muted mb-3"></p>
+              <div class="price-display">
+                <span class="price-label">Цена:</span>
+                <span class="price-value"><span id="productPrice"></span> ₽</span>
+              </div>
+              <div class="product-features mt-4">
+                <div class="feature-item">
+                  <i class="fa-solid fa-shipping-fast text-primary me-2"></i>
+                  <span>Быстрая доставка</span>
+                </div>
+                <div class="feature-item">
+                  <i class="fa-solid fa-shield-halved text-primary me-2"></i>
+                  <span>Гарантия качества</span>
+                </div>
+                <div class="feature-item">
+                  <i class="fa-solid fa-headset text-primary me-2"></i>
+                  <span>Поддержка 24/7</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary glass-btn" data-bs-dismiss="modal">Закрыть</button>
+        <button type="button" class="btn btn-primary glass-btn-primary">
+          <i class="fa-solid fa-cart-plus me-2"></i>В корзину
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock content %}

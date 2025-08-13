@@ -1,0 +1,263 @@
+{% extends 'web/main.html' %}
+{% load static %}
+{% block title_page %}<title>О демо-версии • AutoParts</title>{% endblock title_page %}
+{% block content %}
+
+<!-- Demo Info Hero Section -->
+<section class="demo-info-hero py-5" data-aos="fade-up">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <div class="demo-hero-content">
+          <div class="demo-badge-large mb-4" data-aos="zoom-in" data-aos-delay="200">
+            <span>ДЕМО</span>
+          </div>
+          <h1 class="display-4 fw-bold mb-4" data-aos="fade-up" data-aos-delay="300">
+            Демо-версия сайта
+          </h1>
+          <p class="lead mb-5" data-aos="fade-up" data-aos-delay="400">
+            Это визитка-сайт для демонстрации возможностей современных веб-технологий
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What is Demo Section -->
+<section class="py-5 what-is-demo-section" data-aos="fade-up">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
+        <div class="content-wrapper">
+          <h2 class="fw-bold display-6 mb-4">Что это такое?</h2>
+          <p class="text-muted lead mb-4">
+            Данный проект является <strong>демонстрационной версией</strong>, созданной для показа возможностей 
+            современной веб-разработки. Это не настоящий магазин, а визитка-сайт.
+          </p>
+          <div class="demo-features">
+            <div class="demo-feature-item">
+              <i class="fa-solid fa-code feature-icon"></i>
+              <span>Демонстрация кода и технологий</span>
+            </div>
+            <div class="demo-feature-item">
+              <i class="fa-solid fa-palette feature-icon"></i>
+              <span>Показ современного дизайна</span>
+            </div>
+            <div class="demo-feature-item">
+              <i class="fa-solid fa-mobile-alt feature-icon"></i>
+              <span>Пример адаптивной верстки</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
+        <div class="image-container">
+          <img class="img-fluid rounded-4 shadow-lg" src="{% static 'img/details.png' %}" alt="Demo Info" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Technologies Used Section -->
+<section class="py-5 technologies-section" data-aos="fade-up">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold display-6 mb-4">Использованные технологии</h2>
+      <p class="text-muted lead">Современный стек для создания профессиональных веб-сайтов</p>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="tech-card glass-card">
+          <div class="tech-icon">
+            <i class="fa-brands fa-python"></i>
+          </div>
+          <h5 class="tech-title">Django 5.2.5</h5>
+          <p class="tech-text">Современный веб-фреймворк на Python с админкой и ORM</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="tech-card glass-card">
+          <div class="tech-icon">
+            <i class="fa-brands fa-bootstrap"></i>
+          </div>
+          <h5 class="tech-title">Bootstrap 5.3</h5>
+          <p class="tech-text">CSS-фреймворк для создания адаптивных интерфейсов</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="tech-card glass-card">
+          <div class="tech-icon">
+            <i class="fa-brands fa-js"></i>
+          </div>
+          <h5 class="tech-title">JavaScript ES2025</h5>
+          <p class="tech-text">Современный JavaScript с анимациями и интерактивностью</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="500">
+        <div class="tech-card glass-card">
+          <div class="tech-icon">
+            <i class="fa-solid fa-palette"></i>
+          </div>
+          <h5 class="tech-title">Glassmorphism</h5>
+          <p class="tech-text">Современный тренд дизайна с полупрозрачными элементами</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
+        <div class="tech-card glass-card">
+          <div class="tech-icon">
+            <i class="fa-solid fa-mobile-alt"></i>
+          </div>
+          <h5 class="tech-title">Responsive Design</h5>
+          <p class="tech-text">Адаптивная верстка для всех устройств и экранов</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="700">
+        <div class="tech-card glass-card">
+          <div class="tech-icon">
+            <i class="fa-solid fa-rocket"></i>
+          </div>
+          <h5 class="tech-title">AOS & Particles.js</h5>
+          <p class="tech-text">Библиотеки для создания анимаций и интерактивности</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Demo Section -->
+<section class="py-5 features-demo-section" data-aos="fade-up">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold display-6 mb-4">Что демонстрируется</h2>
+      <p class="text-muted lead">Основные возможности и функции сайта</p>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
+        <div class="feature-demo-card glass-card">
+          <div class="feature-demo-header">
+            <i class="fa-solid fa-shopping-cart feature-demo-icon"></i>
+            <h4>Каталог товаров</h4>
+          </div>
+          <ul class="feature-demo-list">
+            <li>Поиск и фильтрация товаров</li>
+            <li>Категории и группировка</li>
+            <li>Модальные окна просмотра</li>
+            <li>Адаптивная сетка товаров</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
+        <div class="feature-demo-card glass-card">
+          <div class="feature-demo-header">
+            <i class="fa-solid fa-cogs feature-demo-icon"></i>
+            <h4>Django Админка</h4>
+          </div>
+          <ul class="feature-demo-list">
+            <li>Кастомные шаблоны админки</li>
+            <li>Управление товарами</li>
+            <li>Фильтры и поиск</li>
+            <li>CRUD операции</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="col-lg-6" data-aos="fade-right" data-aos-delay="400">
+        <div class="feature-demo-card glass-card">
+          <div class="feature-demo-header">
+            <i class="fa-solid fa-moon feature-demo-icon"></i>
+            <h4>Темная/Светлая тема</h4>
+          </div>
+          <ul class="feature-demo-list">
+            <li>Автоматическое переключение</li>
+            <li>Сохранение в LocalStorage</li>
+            <li>Адаптивные цвета</li>
+            <li>Плавные переходы</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="col-lg-6" data-aos="fade-left" data-aos-delay="500">
+        <div class="feature-demo-card glass-card">
+          <div class="feature-demo-header">
+            <i class="fa-solid fa-mobile-alt feature-demo-icon"></i>
+            <h4>Адаптивность</h4>
+          </div>
+          <ul class="feature-demo-list">
+            <li>Mobile-first подход</li>
+            <li>Адаптивная навигация</li>
+            <li>Гибкие сетки</li>
+            <li>Оптимизация для всех экранов</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Purpose Section -->
+<section class="py-5 purpose-section" data-aos="fade-up">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <div class="purpose-content">
+          <h2 class="fw-bold display-6 mb-4">Для чего создан этот проект?</h2>
+          <div class="purpose-cards">
+            <div class="purpose-card" data-aos="fade-up" data-aos-delay="200">
+              <i class="fa-solid fa-graduation-cap purpose-icon"></i>
+              <h5>Обучение</h5>
+              <p>Изучение Django, современного CSS и JavaScript</p>
+            </div>
+            
+            <div class="purpose-card" data-aos="fade-up" data-aos-delay="300">
+              <i class="fa-solid fa-briefcase purpose-icon"></i>
+              <h5>Портфолио</h5>
+              <p>Демонстрация навыков для работодателей</p>
+            </div>
+            
+            <div class="purpose-card" data-aos="fade-up" data-aos-delay="400">
+              <i class="fa-solid fa-rocket purpose-icon"></i>
+              <h5>База для проектов</h5>
+              <p>Основа для создания реальных сайтов</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact CTA Section -->
+<section class="py-5 contact-cta-section" data-aos="fade-up">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <div class="cta-content">
+          <h2 class="fw-bold display-6 mb-4">Есть вопросы?</h2>
+          <p class="lead mb-5">
+            Хотите узнать больше о технологиях или заказать похожий сайт?
+          </p>
+          <div class="d-flex gap-3 justify-content-center flex-wrap">
+            <a href="{% url 'home' %}" class="btn btn-primary btn-lg glass-btn-primary">
+              <i class="fa-solid fa-home me-2"></i>На главную
+            </a>
+            <a href="{% url 'about' %}" class="btn btn-outline-light btn-lg glass-btn-outline">
+              <i class="fa-solid fa-info-circle me-2"></i>О проекте
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

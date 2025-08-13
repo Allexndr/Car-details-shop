@@ -1,0 +1,192 @@
+{% extends 'web/main.html' %}
+{% load static %}
+{% block title_page %}<title>О нас • AutoParts</title>{% endblock title_page %}
+{% block content %}
+
+<!-- Demo Notice Section -->
+<section class="demo-notice-section py-3" data-aos="fade-down">
+  <div class="container">
+    <div class="demo-alert">
+      <div class="demo-alert-content">
+        <i class="fa-solid fa-info-circle me-2"></i>
+        <strong>Демо-версия:</strong> Это демонстрация возможностей дизайна и анимаций. 
+        Здесь показаны современные CSS-эффекты, градиенты и адаптивная верстка.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Hero Section -->
+<section class="about-hero" data-aos="fade-up">
+  <div class="container text-center">
+    <div class="hero-content">
+      <h1 class="display-3 fw-bold hero-title mb-4" data-aos="fade-up" data-aos-delay="200">
+        О компании <span class="gradient-text">AutoParts</span>
+      </h1>
+      <p class="lead hero-subtitle mb-5" data-aos="fade-up" data-aos-delay="300">
+        Мы создаем будущее автомобильной индустрии, делая качественные запчасти доступными каждому водителю
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Mission Section -->
+<section class="py-5 mission-section" data-aos="fade-up" data-aos-delay="100">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
+        <div class="mission-content">
+          <h2 class="display-5 fw-bold mb-4">Наша миссия</h2>
+          <p class="lead text-muted mb-4">
+            Мы стремимся стать ведущим поставщиком автозапчастей, обеспечивая наших клиентов качественными продуктами, 
+            отличным сервисом и инновационными решениями.
+          </p>
+          <div class="mission-values">
+            <div class="value-item">
+              <i class="fa-solid fa-star text-warning me-3"></i>
+              <span>Качество превыше всего</span>
+            </div>
+            <div class="value-item">
+              <i class="fa-solid fa-heart text-danger me-3"></i>
+              <span>Забота о клиентах</span>
+            </div>
+            <div class="value-item">
+              <i class="fa-solid fa-lightbulb text-info me-3"></i>
+              <span>Инновации и развитие</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+        <div class="mission-visual">
+          <div class="floating-card glass-card">
+            <i class="fa-solid fa-car fa-3x text-primary mb-3"></i>
+            <h4>Автомобили</h4>
+            <p class="text-muted">Поддержка всех популярных марок</p>
+          </div>
+          <div class="floating-card glass-card">
+            <i class="fa-solid fa-tools fa-3x text-success mb-3"></i>
+            <h4>Запчасти</h4>
+            <p class="text-muted">Оригинальные и совместимые детали</p>
+          </div>
+          <div class="floating-card glass-card">
+            <i class="fa-solid fa-shipping-fast fa-3x text-warning mb-3"></i>
+            <h4>Доставка</h4>
+            <p class="text-muted">Быстрая доставка по всей России</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Timeline Section -->
+<section class="py-5 timeline-section" data-aos="fade-up" data-aos-delay="200">
+  <div class="container">
+    <h2 class="text-center display-5 fw-bold mb-5">Наш путь развития</h2>
+    <div class="timeline">
+      {% for milestone in milestones %}
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:200 }}">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content glass-card">
+          <div class="timeline-year">{{ milestone.year }}</div>
+          <h4 class="timeline-title">{{ milestone.title }}</h4>
+          <p class="timeline-description">{{ milestone.description }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Team Section -->
+<section class="py-5 team-section" data-aos="fade-up" data-aos-delay="300">
+  <div class="container">
+    <h2 class="text-center display-5 fw-bold mb-5">Наша команда</h2>
+    <div class="row g-4">
+      {% for member in team_members %}
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:400 }}">
+        <div class="team-card glass-card text-center h-100">
+          <div class="team-avatar mb-4">
+            <div class="avatar-placeholder">
+              <i class="fa-solid fa-user fa-2x text-muted"></i>
+            </div>
+          </div>
+          <h4 class="team-name">{{ member.name }}</h4>
+          <p class="team-position text-primary fw-semibold">{{ member.position }}</p>
+          <p class="team-bio text-muted">{{ member.bio }}</p>
+          <div class="team-social mt-3">
+            <a href="{{ member.social.linkedin }}" class="social-icon" title="LinkedIn">
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+            <a href="{{ member.social.twitter }}" class="social-icon" title="Twitter">
+              <i class="fa-brands fa-twitter"></i>
+            </a>
+            <a href="mailto:{{ member.social.email }}" class="social-icon" title="Email">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-5 stats-section" data-aos="fade-up" data-aos-delay="400">
+  <div class="container">
+    <div class="row g-4 text-center">
+      <div class="col-md-3 col-6">
+        <div class="stat-card">
+          <div class="stat-number" data-count="50000">0</div>
+          <div class="stat-label">Довольных клиентов</div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="stat-card">
+          <div class="stat-number" data-count="100000">0</div>
+          <div class="stat-label">Товаров в каталоге</div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="stat-card">
+          <div class="stat-number" data-count="24">0</div>
+          <div class="stat-label">Часа поддержки</div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="stat-card">
+          <div class="stat-number" data-count="99">0</span>%</div>
+          <div class="stat-label">Гарантия качества</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact CTA Section -->
+<section class="py-5 contact-cta-section" data-aos="fade-up" data-aos-delay="500">
+  <div class="container text-center">
+    <div class="cta-content glass-card p-5">
+      <h2 class="display-5 fw-bold mb-4">Готовы начать?</h2>
+      <p class="lead text-muted mb-4">
+        Присоединяйтесь к тысячам довольных клиентов AutoParts. 
+        Мы здесь, чтобы помочь вам найти нужные запчасти.
+      </p>
+      <div class="d-flex gap-3 justify-content-center flex-wrap">
+        <a href="{% url 'shop' %}" class="btn btn-primary btn-lg glass-btn-primary">
+          <i class="fa-solid fa-shopping-cart me-2"></i>Перейти в магазин
+        </a>
+        <button class="btn btn-outline-light btn-lg glass-btn-outline" onclick="showNotification('Скоро мы с вами свяжемся!', 'success')">
+          <i class="fa-solid fa-phone me-2"></i>Связаться с нами
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
+
+
+
