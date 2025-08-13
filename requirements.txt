@@ -12,7 +12,7 @@ python-environ==0.4.54
 Pillow==10.4.0
 
 # Разработка и тестирование
-pytest==8.0.0
+pytest==8.4.1
 pytest-django==4.8.0
 black==24.1.1
 flake8==7.0.0
