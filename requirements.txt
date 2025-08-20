@@ -1,29 +1,29 @@
 # Django и основные зависимости
-Django==5.2.5
-django-crispy-forms==2.4
-crispy-bootstrap4==2025.6
-whitenoise==6.9.0
-python-environ==0.4.54
+Django>=4.2,<6
+django-crispy-forms>=2.1
+crispy-bootstrap4>=2022.1
+whitenoise>=6.5
+python-environ>=0.4.54
 
 # База данных
 # SQLite встроен в Python
 
 # Статические файлы и медиа
-Pillow==10.4.0
+Pillow>=10.0
 
-# Разработка и тестирование
-pytest==8.0.0
-pytest-django==4.8.0
-black==24.1.1
-flake8==7.0.0
+# Разработка и тестирование (необязательно для продакшена)
+pytest>=8.0.0
+pytest-django>=4.8.0
+black>=24.1.1
+flake8>=7.0.0
 
 # Продакшен
-gunicorn==21.2.0
-psycopg2-binary==2.9.9
+gunicorn>=21.2.0
+psycopg2-binary>=2.9.9
 
 # Дополнительные утилиты
-python-decouple==3.8
-dj-database-url==2.1.0
+python-decouple>=3.8
+dj-database-url>=2.1.0
 
 
 
