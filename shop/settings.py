@@ -133,6 +133,8 @@ MEDIA_URL = '/pictures/'
 
 # Whitenoise compressed static files for production
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+# Allow serving files directly via finders without collectstatic (useful on serverless)
+WHITENOISE_USE_FINDERS = True
 
 # Crispy Forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
