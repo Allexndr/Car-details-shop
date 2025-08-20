@@ -18,6 +18,13 @@ DEBUG = env("DEBUG")
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["127.0.0.1", "localhost"]) 
 CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
 
+# Allow Vercel preview/prod domains automatically if present
+VERCEL_URL = os.environ.get("VERCEL_URL")  # e.g. car-details-shop.vercel.app
+if VERCEL_URL:
+    host = VERCEL_URL.replace("https://", "").replace("http://", "")
+    ALLOWED_HOSTS += [host, ".vercel.app"]
+    CSRF_TRUSTED_ORIGINS += [f"https://{host}", "https://*.vercel.app"]
+
 INSTALLED_APPS = [
     # Third-party
     'crispy_forms',
