@@ -1,594 +1,199 @@
-// Modern 2025 JavaScript Features
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize AOS
-  AOS.init({
-    duration: 800,
-    easing: 'ease-out-cubic',
-    once: true,
-    offset: 100
-  });
+/* 
+   PREMIUM AUTOPARTS INTERACTIVE LOGIC 2026 
+   - Mock Cart System
+   - Theme Management
+   - Animations & UX Enhancements
+*/
 
-  // Initialize Particles.js
-  if (typeof particlesJS !== 'undefined') {
-    particlesJS('particles-js', {
-      particles: {
-        number: {
-          value: 80,
-          density: {
-            enable: true,
-            value_area: 800
-          }
-        },
-        color: {
-          value: '#ffffff'
-        },
-        shape: {
-          type: 'circle',
-          stroke: {
-            width: 0,
-            color: '#000000'
-          }
-        },
-        opacity: {
-          value: 0.5,
-          random: false,
-          anim: {
-            enable: false,
-            speed: 1,
-            opacity_min: 0.1,
-            sync: false
-          }
-        },
-        size: {
-          value: 3,
-          random: true,
-          anim: {
-            enable: false,
-            speed: 40,
-            size_min: 0.1,
-            sync: false
-          }
-        },
-        line_linked: {
-          enable: true,
-          distance: 150,
-          color: '#ffffff',
-          opacity: 0.4,
-          width: 1
-        },
-        move: {
-          enable: true,
-          speed: 6,
-          direction: 'none',
-          random: false,
-          straight: false,
-          out_mode: 'out',
-          bounce: false,
-          attract: {
-            enable: false,
-            rotateX: 600,
-            rotateY: 1200
-          }
-        }
-      },
-      interactivity: {
-        detect_on: 'canvas',
-        events: {
-          onhover: {
-            enable: true,
-            mode: 'repulse'
-          },
-          onclick: {
-            enable: true,
-            mode: 'push'
-          },
-          resize: true
-        },
-        modes: {
-          grab: {
-            distance: 400,
-            line_linked: {
-              opacity: 1
-            }
-          },
-          bubble: {
-            distance: 400,
-            size: 40,
-            duration: 2,
-            opacity: 8,
-            speed: 3
-          },
-          repulse: {
-            distance: 200,
-            duration: 0.4
-          },
-          push: {
-            particles_nb: 4
-          },
-          remove: {
-            particles_nb: 2
-          }
-        }
-      },
-      retina_detect: true
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Initialize AOS
+  if (typeof AOS !== 'undefined') {
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 50
     });
   }
 
-  // Theme Management
-  const body = document.body;
+  // 2. Theme Management
   const themeToggle = document.getElementById('themeToggle');
-  const notificationBtn = document.getElementById('notificationBtn');
+  const htmlEl = document.documentElement;
 
-  const applyTheme = (theme) => {
-    document.documentElement.setAttribute('data-bs-theme', theme);
-    localStorage.setItem('theme', theme);
-    if (themeToggle) {
-      themeToggle.innerHTML = theme === 'dark'
-        ? '<i class="fa-solid fa-sun"></i>'
-        : '<i class="fa-solid fa-moon"></i>';
-    }
-  };
-
-  // Load saved theme
+  // Check saved theme
   const savedTheme = localStorage.getItem('theme') || 'light';
-  applyTheme(savedTheme);
+  htmlEl.setAttribute('data-bs-theme', savedTheme);
+  updateThemeIcon(savedTheme);
 
-  // Theme toggle
   if (themeToggle) {
-    themeToggle.addEventListener('click', function(e) {
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = htmlEl.getAttribute('data-bs-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+      htmlEl.setAttribute('data-bs-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+
+      // Visual feedback
+      themeToggle.classList.add('animate__animated', 'animate__rotateIn');
+      setTimeout(() => themeToggle.classList.remove('animate__animated', 'animate__rotateIn'), 500);
+    });
+  }
+
+  function updateThemeIcon(theme) {
+    if (!themeToggle) return;
+    const icon = themeToggle.querySelector('i');
+    if (theme === 'dark') {
+      icon.className = 'fa-solid fa-sun';
+    } else {
+      icon.className = 'fa-solid fa-moon';
+    }
+  }
+
+  // 3. Mock Cart System
+  let cart = JSON.parse(localStorage.getItem('autoparts_cart') || '[]');
+  updateCartUI();
+
+  const addToCartBtns = document.querySelectorAll('.add-to-cart-dummy');
+  addToCartBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
       e.preventDefault();
-      e.stopPropagation();
-      console.log('Theme toggle clicked');
-      const current = document.documentElement.getAttribute('data-bs-theme') || 'light';
-      const newTheme = current === 'light' ? 'dark' : 'light';
-      console.log('Switching from', current, 'to', newTheme);
-      applyTheme(newTheme);
-    });
-  }
-
-  // Mobile menu improvements
-  const navbarToggler = document.querySelector('.navbar-toggler');
-  const navbarCollapse = document.querySelector('.navbar-collapse');
-  
-  if (navbarToggler && navbarCollapse) {
-    navbarToggler.addEventListener('click', function() {
-      // Add smooth animation for mobile menu
-      if (navbarCollapse.classList.contains('show')) {
-        navbarCollapse.style.transition = 'all 0.3s ease';
-      }
-    });
-    
-    // Close mobile menu when clicking on nav links
-    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-    navLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        if (window.innerWidth < 992) {
-          navbarCollapse.classList.remove('show');
-        }
-      });
-    });
-  }
-
-  // Touch device optimizations
-  let touchStartY = 0;
-  let touchEndY = 0;
-  
-  document.addEventListener('touchstart', function(e) {
-    touchStartY = e.changedTouches[0].screenY;
-  });
-  
-  document.addEventListener('touchend', function(e) {
-    touchEndY = e.changedTouches[0].screenY;
-    handleSwipe();
-  });
-  
-  function handleSwipe() {
-    const swipeThreshold = 50;
-    const diff = touchStartY - touchEndY;
-    
-    if (Math.abs(diff) > swipeThreshold) {
-      if (diff > 0) {
-        // Swipe up - could be used for navigation
-        console.log('Swipe up detected');
-      } else {
-        // Swipe down - could be used for navigation
-        console.log('Swipe down detected');
-      }
-    }
-  }
-
-  // Responsive optimizations
-  function handleResize() {
-    const isMobile = window.innerWidth < 768;
-    const isTablet = window.innerWidth >= 768 && window.innerWidth < 992;
-    
-    // Adjust particles for mobile
-    if (typeof particlesJS !== 'undefined') {
-      const particlesConfig = {
-        particles: {
-          number: {
-            value: isMobile ? 40 : isTablet ? 60 : 80
-          },
-          move: {
-            speed: isMobile ? 3 : isTablet ? 4 : 6
-          }
-        }
-      };
-      
-      // Update particles if they exist
-      if (window.pJSDom && window.pJSDom[0]) {
-        window.pJSDom[0].pJS.pJS.fn.particlesRefresh();
-      }
-    }
-    
-    // Adjust AOS for mobile
-    if (typeof AOS !== 'undefined') {
-      AOS.refresh();
-    }
-  }
-  
-  // Debounced resize handler
-  let resizeTimeout;
-  window.addEventListener('resize', function() {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(handleResize, 250);
-  });
-  
-  // Initial call
-  handleResize();
-
-  // Performance optimizations for mobile
-  if ('IntersectionObserver' in window) {
-    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          img.src = img.dataset.src || img.src;
-          img.classList.remove('lazy');
-          observer.unobserve(img);
-        }
-      });
-    });
-    
-    lazyImages.forEach(img => imageObserver.observe(img));
-  }
-  
-  // Mobile-specific optimizations
-  if (window.innerWidth < 768) {
-    // Reduce animations on mobile
-    document.documentElement.style.setProperty('--transition', '0.2s ease');
-    
-    // Optimize scroll performance
-    let ticking = false;
-    function updateScroll() {
-      ticking = false;
-    }
-    
-    function requestTick() {
-      if (!ticking) {
-        requestAnimationFrame(updateScroll);
-        ticking = true;
-      }
-    }
-    
-    window.addEventListener('scroll', requestTick, { passive: true });
-  }
-
-  // Accessibility improvements
-  const skipLink = document.querySelector('.skip-link');
-  if (skipLink) {
-    skipLink.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.focus();
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  }
-  
-  // Keyboard navigation
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      // Close mobile menu with Escape key
-      if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-        navbarCollapse.classList.remove('show');
-        navbarToggler.focus();
-      }
-    }
-  });
-  
-  // Focus management for modals
-  const modals = document.querySelectorAll('.modal');
-  modals.forEach(modal => {
-    modal.addEventListener('shown.bs.modal', function() {
-      const firstFocusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-      if (firstFocusable) {
-        firstFocusable.focus();
-      }
-    });
-  });
-
-  // Service Worker registration for PWA features
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      navigator.serviceWorker.register('/sw.js')
-        .then(function(registration) {
-          console.log('SW registered: ', registration);
-        })
-        .catch(function(registrationError) {
-          console.log('SW registration failed: ', registrationError);
-        });
-    });
-  }
-  
-  // Offline detection
-  window.addEventListener('online', function() {
-    document.body.classList.remove('offline');
-    showNotification('Соединение восстановлено', 'success');
-  });
-  
-  window.addEventListener('offline', function() {
-    document.body.classList.add('offline');
-    showNotification('Нет соединения с интернетом', 'warning');
-  });
-
-  // Notification system
-  if (notificationBtn) {
-    notificationBtn.addEventListener('click', () => {
-      showNotification('У вас 3 новых уведомления!', 'info');
-    });
-  }
-
-  // Floating Action Button
-  const fab = document.getElementById('scrollToTop');
-  if (fab) {
-    // Show/hide FAB based on scroll
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 300) {
-        fab.classList.add('show');
-      } else {
-        fab.classList.remove('show');
-      }
-    });
-
-    // Scroll to top
-    fab.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-  }
-
-  // Product Modal Population
-  const productModal = document.getElementById('productModal');
-  if (productModal) {
-    productModal.addEventListener('show.bs.modal', function(event) {
-      const button = event.relatedTarget;
-      const name = button.getAttribute('data-name');
-      const img = button.getAttribute('data-img');
-      const desc = button.getAttribute('data-desc');
-      const price = button.getAttribute('data-price');
-
-      const modalTitle = productModal.querySelector('.modal-title');
-      const modalImg = productModal.querySelector('#productImg');
-      const modalDesc = productModal.querySelector('#productDesc');
-      const modalPrice = productModal.querySelector('#productPrice');
-
-      if (modalTitle) modalTitle.textContent = name;
-      if (modalImg) modalImg.src = img;
-      if (modalDesc) modalDesc.textContent = desc;
-      if (modalPrice) modalPrice.textContent = price;
-    });
-  }
-
-  // Animated Counters
-  const counters = document.querySelectorAll('.stat-number');
-  const animateCounters = () => {
-    counters.forEach(counter => {
-      const target = parseInt(counter.getAttribute('data-count'));
-      const duration = 2000;
-      const step = target / (duration / 16);
-      let current = 0;
-
-      const updateCounter = () => {
-        current += step;
-        if (current < target) {
-          counter.textContent = Math.floor(current);
-          requestAnimationFrame(updateCounter);
-        } else {
-          counter.textContent = target;
-        }
+      const product = {
+        id: btn.dataset.id,
+        name: btn.dataset.name,
+        price: parseFloat(btn.dataset.price),
+        img: btn.dataset.img || '',
+        quantity: 1
       };
 
-      updateCounter();
+      const existing = cart.find(item => item.id === product.id);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push(product);
+      }
+
+      saveCart();
+      updateCartUI();
+      showCartFeedback(btn);
     });
-  };
+  });
 
-  // Intersection Observer for counters
-  const statsSection = document.querySelector('.stats-section');
-  if (statsSection) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateCounters();
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    observer.observe(statsSection);
+  function saveCart() {
+    localStorage.setItem('autoparts_cart', JSON.stringify(cart));
   }
 
-  // Enhanced Search with Debouncing
-  const searchInput = document.querySelector('input[name="q"]');
-  if (searchInput) {
-    let searchTimeout;
-    searchInput.addEventListener('input', (e) => {
-      clearTimeout(searchTimeout);
-      searchTimeout = setTimeout(() => {
-        // Add search animation
-        e.target.classList.add('searching');
-        setTimeout(() => {
-          e.target.classList.remove('searching');
-        }, 500);
-      }, 300);
-    });
-  }
+  function updateCartUI() {
+    const badges = document.querySelectorAll('.cart-badge');
+    const cartItemsContainer = document.getElementById('cartItems');
+    const cartTotalContainer = document.getElementById('cartTotal');
+    const checkoutBtn = document.getElementById('checkoutBtn');
 
-  // Smooth Scrolling for Anchor Links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+    badges.forEach(b => b.textContent = totalItems);
+
+    if (cartItemsContainer) {
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = `
+                    <div class="text-center py-5 text-muted">
+                        <i class="fa-solid fa-basket-shopping fs-1 mb-3 opacity-20"></i>
+                        <p>Корзина пока пуста</p>
+                    </div>
+                `;
+        if (checkoutBtn) checkoutBtn.disabled = true;
+      } else {
+        cartItemsContainer.innerHTML = cart.map(item => `
+                    <div class="d-flex align-items-center gap-3 p-3 rounded-4 bg-light-subtle border border-white-10">
+                        <img src="${item.img || '/static/img/no-image.png'}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 12px;">
+                        <div class="flex-grow-1">
+                            <h6 class="fw-bold mb-0 text-truncate" style="max-width: 150px;">${item.name}</h6>
+                            <p class="small text-muted mb-0">${item.quantity} x ${item.price} $</p>
+                        </div>
+                        <button class="btn btn-sm btn-outline-danger border-0 rounded-circle remove-item" data-id="${item.id}">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                `).join('');
+        if (checkoutBtn) checkoutBtn.disabled = false;
+
+        // Add remove listeners
+        document.querySelectorAll('.remove-item').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.dataset.id;
+            cart = cart.filter(item => item.id !== id);
+            saveCart();
+            updateCartUI();
+          });
         });
       }
-    });
-  });
+    }
 
-  // Parallax Effect for Hero Section
-  const heroSection = document.querySelector('.hero-section');
-  if (heroSection) {
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      const rate = scrolled * -0.5;
-      heroSection.style.transform = `translateY(${rate}px)`;
-    });
+    if (cartTotalContainer) {
+      cartTotalContainer.textContent = `${totalPrice.toFixed(2)} $`;
+    }
   }
 
-  // Enhanced Card Interactions
-  const cards = document.querySelectorAll('.glass-card');
-  cards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
-      this.style.transform = 'translateY(-8px) scale(1.02)';
-    });
+  function showCartFeedback(btn) {
+    const originalHtml = btn.innerHTML;
+    btn.innerHTML = '<i class="fa-solid fa-check"></i> Добавлено';
+    btn.classList.add('btn-success');
+    btn.classList.remove('btn-premium');
 
-    card.addEventListener('mouseleave', function() {
-      this.style.transform = 'translateY(0) scale(1)';
-    });
-  });
-
-  // Loading States
-  const buttons = document.querySelectorAll('.btn');
-  buttons.forEach(button => {
-    button.addEventListener('click', function() {
-      if (!this.classList.contains('loading')) {
-        this.classList.add('loading');
-        this.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i>Загрузка...';
-        
-        setTimeout(() => {
-          this.classList.remove('loading');
-          this.innerHTML = this.getAttribute('data-original-text') || this.innerHTML;
-        }, 2000);
-      }
-    });
-  });
-
-  // Toast Notifications
-  function showNotification(message, type = 'info') {
-    const toast = document.createElement('div');
-    toast.className = `toast-notification toast-${type}`;
-    toast.innerHTML = `
-      <div class="toast-content">
-        <i class="fa-solid fa-${type === 'info' ? 'info-circle' : 'check-circle'} me-2"></i>
-        <span>${message}</span>
-        <button class="toast-close" onclick="this.parentElement.parentElement.remove()">
-          <i class="fa-solid fa-times"></i>
-        </button>
-      </div>
-    `;
-
-    document.body.appendChild(toast);
-    
-    // Animate in
-    setTimeout(() => toast.classList.add('show'), 100);
-    
-    // Auto remove
     setTimeout(() => {
-      toast.classList.remove('show');
-      setTimeout(() => toast.remove(), 300);
-    }, 5000);
+      btn.innerHTML = originalHtml;
+      btn.classList.remove('btn-success');
+      btn.classList.add('btn-premium');
+    }, 1500);
+
+    // Shake cart icon
+    const cartIcons = document.querySelectorAll('.cart-trigger');
+    cartIcons.forEach(icon => {
+      icon.classList.add('animate__animated', 'animate__headShake');
+      setTimeout(() => icon.classList.remove('animate__animated', 'animate__headShake'), 500);
+    });
   }
 
-  // Enhanced Form Interactions
-  const forms = document.querySelectorAll('form');
-  forms.forEach(form => {
-    form.addEventListener('submit', function(e) {
-      const submitBtn = this.querySelector('button[type="submit"]');
-      if (submitBtn) {
-        submitBtn.classList.add('loading');
-        submitBtn.disabled = true;
-      }
-    });
-  });
+  // 4. Cart Modal Trigger
+  const cartToggles = [document.getElementById('cartToggle'), document.getElementById('cartToggleMobile')];
+  const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
 
-  // Keyboard Navigation
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      const modals = document.querySelectorAll('.modal.show');
-      modals.forEach(modal => {
-        const modalInstance = bootstrap.Modal.getInstance(modal);
-        if (modalInstance) modalInstance.hide();
-      });
+  cartToggles.forEach(t => {
+    if (t) {
+      t.addEventListener('click', () => cartModal.show());
     }
   });
 
-  // Performance Optimization: Lazy Loading Images
-  const images = document.querySelectorAll('img[loading="lazy"]');
-  if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          img.src = img.dataset.src || img.src;
-          img.classList.remove('lazy');
-          imageObserver.unobserve(img);
-        }
-      });
+  // 5. Mock Notifications
+  const notifyBtn = document.getElementById('notifyBtn');
+  if (notifyBtn) {
+    notifyBtn.addEventListener('click', () => {
+      alert('📢 Ваши уведомления:\n1. Заказ №4829 принят в обработку\n2. Скидка -15% на раздел Двигатели!');
+      const badge = notifyBtn.querySelector('.notification-badge');
+      if (badge) badge.style.display = 'none';
     });
-
-    images.forEach(img => imageObserver.observe(img));
   }
 
-  // Add CSS classes for enhanced animations
-  document.body.classList.add('js-enhanced');
+  // 6. Navbar Scroll Effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('.glass-nav');
+    if (window.scrollY > 50) {
+      nav.classList.add('shadow-lg', 'py-2');
+      nav.style.background = 'var(--card-bg)';
+    } else {
+      nav.classList.remove('shadow-lg', 'py-2');
+      nav.style.background = 'transparent';
+    }
+  });
+
+  // 7. Checkout (Mock)
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+      alert('🎉 Ваш заказ успешно имитирован! В реальной системе здесь был бы переход к оплате.');
+      cart = [];
+      saveCart();
+      updateCartUI();
+      cartModal.hide();
+    });
+  }
 });
-
-// Utility Functions
-function debounce(func, wait) {
-  let timeout;
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-}
-
-function throttle(func, limit) {
-  let inThrottle;
-  return function() {
-    const args = arguments;
-    const context = this;
-    if (!inThrottle) {
-      func.apply(context, args);
-      inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
-    }
-  };
-}
-
-// Export for global use
-window.showNotification = function(message, type) {
-  // Implementation will be added by the main function
-};
-
-

@@ -1,98 +1,158 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-bs-theme="light">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  {% block title_page %}{% endblock %}
+  <title>AutoParts Premium | {% block title_page %}{% endblock %}</title>
   {% load static %}
 
   <link rel="icon" href="{% static 'favicon.svg' %}" type="image/svg+xml">
 
-  <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" />
-  <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet" />
-  <link href="{% static 'css/animate.css' %}" rel="stylesheet" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Core Libraries -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
   <link href="{% static 'css/custom.css' %}" rel="stylesheet" />
 </head>
-<body class="modern-body">
-  <!-- Skip to content link for accessibility -->
+
+<body>
   <a href="#main-content" class="skip-link">Перейти к содержимому</a>
-  
-  <!-- Floating Action Button -->
-  <div class="fab-container">
-    <button class="fab-button" id="scrollToTop" title="Наверх">
-      <i class="fa-solid fa-arrow-up"></i>
-    </button>
-  </div>
 
   <nav class="navbar navbar-expand-lg sticky-top glass-nav">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center gap-2 brand-glow" href="{% url 'home' %}">
-        <div class="logo-container">
-          <img src="{% static 'img/small_logo.png' %}" alt="logo" class="logo-img" />
-        </div>
-        <span class="fw-semibold brand-text">AutoParts</span>
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <i class="fa-solid fa-gear text-primary"></i> <span>AutoParts</span>
       </a>
-      
-      <!-- Demo Notice -->
-      <div class="demo-notice">
-        <span class="demo-badge">ДЕМО</span>
-        <span class="demo-text">Магазин ненастоящий - <a href="{% url 'demo_info' %}" class="demo-link">подробнее</a></span>
+
+      <div class="d-flex align-items-center gap-3 d-lg-none">
+        <div class="cart-trigger" id="cartToggleMobile">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="cart-badge">0</span>
+        </div>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
       </div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+
       <div class="collapse navbar-collapse" id="mainNav">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link nav-link-modern" href="{% url 'home' %}">Главная</a></li>
-          <li class="nav-item"><a class="nav-link nav-link-modern" href="{% url 'shop' %}">Магазин</a></li>
-          <li class="nav-item"><a class="nav-link nav-link-modern" href="{% url 'about' %}">О нас</a></li>
-          <li class="nav-item d-flex align-items-center ms-lg-3">
-            <button id="themeToggle" class="btn btn-sm glass-btn" type="button" title="Переключить тему">
-              <i class="fa-solid fa-moon"></i>
-            </button>
-          </li>
-          <li class="nav-item d-flex align-items-center ms-lg-2">
-            <button class="btn btn-sm glass-btn" id="notificationBtn" title="Уведомления">
-              <i class="fa-solid fa-bell"></i>
-              <span class="notification-badge">3</span>
-            </button>
-          </li>
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Главная</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'shop' %}">Магазин</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">О сервисе</a></li>
         </ul>
+
+        <div class="d-none d-lg-flex align-items-center gap-4">
+          <div class="theme-switch" id="themeToggle">
+            <i class="fa-solid fa-moon"></i>
+          </div>
+
+          <div class="position-relative cursor-pointer" id="notifyBtn">
+            <i class="fa-solid fa-bell fs-5"></i>
+            <span class="notification-badge">2</span>
+          </div>
+
+          <div class="cart-trigger" id="cartToggle">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="cart-badge">0</span>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
 
-  <main class="main-content" id="main-content">
+  <main id="main-content">
     {% if messages %}
-      <div class="container py-4" data-aos="fade-up" data-aos-duration="700">
-        {% for mess in messages %}
-          <div class="alert alert-success alert-dismissible fade show glass-alert" role="alert">
-            {{ mess }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        {% endfor %}
+    <div class="container mt-4">
+      {% for mess in messages %}
+      <div class="alert alert-info border-0 rounded-4 glass-alert shadow-sm animate-fade-in" role="alert">
+        <i class="fa-solid fa-info-circle me-2"></i> {{ mess }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
       </div>
+      {% endfor %}
+    </div>
     {% endif %}
     {% block content %}{% endblock content %}
   </main>
 
-  <footer class="footer-modern mt-auto">
-    <div class="container d-flex flex-wrap justify-content-between align-items-center">
-      <div class="footer-info">
-        <p class="mb-0 text-muted">© {{ now|default:2025 }} AutoParts. Все права защищены.</p>
-        <small class="text-muted d-block mt-1">Это демо-версия для показа возможностей технологий</small>
+  <footer>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <h4 class="fw-bold mb-4">AutoParts<span class="text-primary">.</span></h4>
+          <p class="text-white-50">Ваш надежный партнер в мире автозапчастей. Мы предлагаем только проверенные детали с
+            гарантией качества и быстрой доставкой по всей стране.</p>
+          <div class="d-flex gap-3 mt-4">
+            <a href="#" class="btn btn-outline-light btn-sm rounded-circle"
+              style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;"><i
+                class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="btn btn-outline-light btn-sm rounded-circle"
+              style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;"><i
+                class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="btn btn-outline-light btn-sm rounded-circle"
+              style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;"><i
+                class="fa-brands fa-telegram"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 ms-lg-auto">
+          <h6 class="fw-bold mb-4">Навигация</h6>
+          <ul class="list-unstyled d-flex flex-column gap-2">
+            <li><a href="{% url 'home' %}" class="footer-link">Главная</a></li>
+            <li><a href="{% url 'shop' %}" class="footer-link">Каталог</a></li>
+            <li><a href="{% url 'about' %}" class="footer-link">О компании</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3">
+          <h6 class="fw-bold mb-4">Поддержка</h6>
+          <ul class="list-unstyled d-flex flex-column gap-2">
+            <li><a href="#" class="footer-link">Центр помощи</a></li>
+            <li><a href="#" class="footer-link">Доставка и оплата</a></li>
+            <li><a href="#" class="footer-link">Условия возврата</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="d-flex gap-3">
-        <a class="social-link" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-        <a class="social-link" href="#" aria-label="VK"><i class="fa-brands fa-vk"></i></a>
-        <a class="social-link" href="#" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+      <div class="border-top border-white-10 mt-5 pt-4 text-center">
+        <p class="text-white-50 small mb-0">© 2026 AutoParts Premium. Все права защищены. Демо-проект для портфолио.</p>
       </div>
     </div>
   </footer>
 
-  <script src="{% static 'js/bootstrap.js' %}"></script>
+  <!-- Mock Cart Modal -->
+  <div class="modal fade" id="cartModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-end">
+      <div class="modal-content rounded-4 border-0 shadow-lg">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-bold">Ваша корзина</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div id="cartItems" class="d-flex flex-column gap-3">
+            <div class="text-center py-5 text-muted">
+              <i class="fa-solid fa-basket-shopping fs-1 mb-3 opacity-20"></i>
+              <p>Корзина пока пуста</p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-0 pt-0">
+          <div class="w-100 d-flex justify-content-between mb-3 fw-bold">
+            <span>Итого:</span>
+            <span id="cartTotal">0.00 $</span>
+          </div>
+          <button class="btn btn-premium w-100 py-3" id="checkoutBtn" disabled>Оформить заказ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
   <script src="{% static 'js/custom.js' %}"></script>
 </body>
+
 </html>

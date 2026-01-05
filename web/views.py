@@ -12,95 +12,107 @@ def shop(request):
     
     catalogue_products = [
         {
-            'name': 'Вкладыш двигателя',
-            'description': 'Качественный комплект вкладышей для ремонта двигателя.',
-            'price': 12990,
-            'availability': True,
+            'id': 1,
+            'name': 'Выпускной коллектор Sport',
+            'description': 'Высокопроизводительный коллектор из нержавеющей стали для спортивных авто.',
+            'price': 450.00,
             'group': 'engine',
-            'img_url': '/pictures/product_image/1_vkladish.jpg'
+            'img': {'url': '/pictures/product_image/1_vkladish.jpg'}
         },
         {
-            'name': 'Кольца поршневые',
-            'description': 'Набор поршневых колец для различных моделей двигателей.',
-            'price': 8500,
-            'availability': True,
+            'id': 2,
+            'name': 'Комплект кованых поршней',
+            'description': 'Набор поршней повышенной прочности для турбированных двигателей.',
+            'price': 850.00,
             'group': 'engine',
-            'img_url': '/pictures/product_image/3_rings.jpg'
+            'img': {'url': '/pictures/product_image/3_rings.jpg'}
         },
         {
-            'name': 'Капот',
-            'description': 'Оригинальный капот для автомобиля.',
-            'price': 35000,
-            'availability': True,
+            'id': 3,
+            'name': 'Капот карбоновый UltraLight',
+            'description': 'Облегченный капот из настоящего углеволокна. Идеальный фитмент.',
+            'price': 1200.00,
             'group': 'body',
-            'img_url': '/pictures/product_image/капот.jpg'
+            'img': {'url': '/pictures/product_image/капот.jpg'}
         },
         {
-            'name': 'Коробка передач',
-            'description': 'Автоматическая коробка передач, б/у, в отличном состоянии.',
-            'price': 75000,
-            'availability': True,
+            'id': 4,
+            'name': 'АКПП 8-ступенчатая ZF',
+            'description': 'Проверенная автоматическая трансмиссия с гарантией 12 месяцев.',
+            'price': 2500.00,
             'group': 'transmission',
-            'img_url': '/pictures/product_image/коробка_передач.jpg'
+            'img': {'url': '/pictures/product_image/коробка_передач.jpg'}
         },
         {
-            'name': 'Держатель телефона',
-            'description': 'Универсальный магнитный держатель для смартфона в автомобиль.',
-            'price': 1500,
-            'availability': True,
-            'group': 'accessories',
-            'img_url': '/pictures/product_image/держатель_телефона.jpg'
+            'id': 5,
+            'name': 'Мультимедиа система Pro',
+            'description': '12-дюймовый экран, CarPlay, Android Auto и 4G модем.',
+            'price': 600.00,
+            'group': 'electronics',
+            'img': {'url': '/pictures/product_image/оптика_автомобильная.jpg'}
         },
         {
-            'name': 'Редуктор заднего моста',
-            'description': 'Редуктор для заднеприводных автомобилей.',
-            'price': 22000,
-            'availability': True,
+            'id': 6,
+            'name': 'Редуктор самоблокирующийся',
+            'description': 'LSD дифференциал для улучшения управляемости и зацепа.',
+            'price': 950.00,
             'group': 'transmission',
-            'img_url': '/pictures/product_image/редуктор.jpg'
+            'img': {'url': '/pictures/product_image/редуктор.jpg'}
         },
         {
-            'name': 'Крылья передние',
-            'description': 'Комплект передних крыльев, левое и правое.',
-            'price': 18000,
-            'availability': True,
+            'id': 7,
+            'name': 'Крылья WideBody Kit',
+            'description': 'Расширенные передние крылья для агрессивного внешнего вида.',
+            'price': 400.00,
             'group': 'body',
-            'img_url': '/pictures/product_image/крылья.jpg'
+            'img': {'url': '/pictures/product_image/крылья.jpg'}
         },
         {
-            'name': 'Обшивка на руль',
-            'description': 'Кожаная обшивка для рулевого колеса.',
-            'price': 2500,
-            'availability': True,
+            'id': 8,
+            'name': 'Руль спортивный Alcantara',
+            'description': 'Анатомический руль с отделкой из премиальной алькантары.',
+            'price': 350.00,
             'group': 'accessories',
-            'img_url': '/pictures/product_image/Обшивка_на_руль.jpg'
+            'img': {'url': '/pictures/product_image/Обшивка_на_руль.jpg'}
         },
         {
-            'name': 'Оптика автомобильная',
-            'description': 'Комплект передних фар с LED-элементами.',
-            'price': 45000,
-            'availability': True,
+            'id': 9,
+            'name': 'Тормозная система Carbon-Ceramic',
+            'description': 'Максимальная эффективность торможения без перегрева.',
+            'price': 4500.00,
             'group': 'body',
-            'img_url': '/pictures/product_image/оптика_автомобильная.jpg'
+            'img': {'url': '/pictures/product_image/бампер.webp'}
         },
         {
-            'name': 'Аптечка автомобильная',
-            'description': 'Стандартная автомобильная аптечка, соответствует ГОСТ.',
-            'price': 1000,
-            'availability': True,
+            'id': 10,
+            'name': 'Набор инструментов Premium',
+            'description': 'Профессиональный чемодан на 150 предметов для ремонта.',
+            'price': 200.00,
             'group': 'accessories',
-            'img_url': '/pictures/product_image/аптечка.png'
+            'img': {'url': '/pictures/product_image/аптечка.png'}
         },
     ]
     
+    # Simple search
     if q:
         catalogue_products = [p for p in catalogue_products if q.lower() in p['name'].lower() or q.lower() in p['description'].lower()]
     
+    # Filter by group
     if group:
         catalogue_products = [p for p in catalogue_products if p['group'] == group]
     
+    # Also fetch from DB if any exist (to allow admin adding real ones)
+    db_products = Product.objects.all()
+    if q:
+        db_products = db_products.filter(Q(name__icontains=q) | Q(description__icontains=q))
+    if group:
+        db_products = db_products.filter(group=group)
+    
+    # Merge dummy and DB products for the WOW effect
+    all_products = catalogue_products + list(db_products)
+    
     context = {
-        'pr': catalogue_products,
+        'catalogue_products': all_products,
         'q': q,
         'group': group
     }
