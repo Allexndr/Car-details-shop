@@ -9,7 +9,7 @@
     <div class="demo-alert">
       <div class="demo-alert-content">
         <i class="fa-solid fa-info-circle me-2"></i>
-        <strong>Демо-версия:</strong> Это демонстрация возможностей каталога товаров. 
+        <strong>Демо-версия:</strong> Это демонстрация возможностей каталога товаров.
         Здесь показана работа с базой данных, фильтрация и поиск товаров.
       </div>
     </div>
@@ -31,7 +31,8 @@
               <span class="input-group-text glass-input-group">
                 <i class="fa-solid fa-search"></i>
               </span>
-              <input class="form-control glass-input" name="q" value="{{ q }}" placeholder="Поиск по названию или описанию..." />
+              <input class="form-control glass-input" name="q" value="{{ q }}"
+                placeholder="Поиск по названию или описанию..." />
               <button class="btn btn-primary glass-btn-primary" type="submit">
                 <i class="fa-solid fa-filter me-1"></i>Фильтр
               </button>
@@ -47,16 +48,20 @@
         <a href="?{% if q %}q={{ q }}&{% endif %}" class="category-filter-btn {% if not group %}active{% endif %}">
           <i class="fa-solid fa-th-large me-2"></i>Все
         </a>
-        <a href="?{% if q %}q={{ q }}&{% endif %}group=mobile" class="category-filter-btn {% if group == 'mobile' %}active{% endif %}">
+        <a href="?{% if q %}q={{ q }}&{% endif %}group=engine"
+          class="category-filter-btn {% if group == 'engine' %}active{% endif %}">
           <i class="fa-solid fa-gears me-2"></i>Двигатель
         </a>
-        <a href="?{% if q %}q={{ q }}&{% endif %}group=pc" class="category-filter-btn {% if group == 'pc' %}active{% endif %}">
+        <a href="?{% if q %}q={{ q }}&{% endif %}group=body"
+          class="category-filter-btn {% if group == 'body' %}active{% endif %}">
           <i class="fa-solid fa-car me-2"></i>Кузов
         </a>
-        <a href="?{% if q %}q={{ q }}&{% endif %}group=notebook" class="category-filter-btn {% if group == 'notebook' %}active{% endif %}">
+        <a href="?{% if q %}q={{ q }}&{% endif %}group=transmission"
+          class="category-filter-btn {% if group == 'transmission' %}active{% endif %}">
           <i class="fa-solid fa-cog me-2"></i>Трансмиссия
         </a>
-        <a href="?{% if q %}q={{ q }}&{% endif %}group=accessories" class="category-filter-btn {% if group == 'accessories' %}active{% endif %}">
+        <a href="?{% if q %}q={{ q }}&{% endif %}group=accessories"
+          class="category-filter-btn {% if group == 'accessories' %}active{% endif %}">
           <i class="fa-solid fa-tools me-2"></i>Аксессуары
         </a>
       </div>
@@ -65,44 +70,49 @@
     <!-- Products Grid -->
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" data-aos="fade-up" data-aos-delay="300">
       {% for post in pr %}
-        <div class="col">
-          <div class="product-card glass-card h-100">
-            <div class="product-image-container">
-              <img src="{{ post.img_url }}" class="product-image" alt="{{ post.name }}" loading="lazy" />
-              <div class="product-overlay">
-                <button class="btn btn-light btn-sm quick-view-btn" data-bs-toggle="modal" data-bs-target="#productModal" data-name="{{ post.name }}" data-img="{{ post.img_url }}" data-desc="{{ post.description }}" data-price="{{ post.price }}">
-                  <i class="fa-solid fa-eye me-1"></i>Быстрый просмотр
-                </button>
-              </div>
+      <div class="col">
+        <div class="product-card glass-card h-100">
+          <div class="product-image-container">
+            <img src="{{ post.img_url }}" class="product-image" alt="{{ post.name }}" loading="lazy" />
+            <div class="product-overlay">
+              <button class="btn btn-light btn-sm quick-view-btn" data-bs-toggle="modal" data-bs-target="#productModal"
+                data-name="{{ post.name }}" data-img="{{ post.img_url }}" data-desc="{{ post.description }}"
+                data-price="{{ post.price }}">
+                <i class="fa-solid fa-eye me-1"></i>Быстрый просмотр
+              </button>
             </div>
-            <div class="product-body">
-              <h5 class="product-title">{{ post.name }}</h5>
-              <p class="product-description">{{ post.description|default:'Без описания'|truncatechars:120 }}</p>
-              <div class="product-meta">
-                <div class="product-price">
-                  <span class="price-amount">{{ post.price }}</span>
-                  <span class="price-currency">₽</span>
-                </div>
-                <span class="availability-badge {% if post.availability %}in-stock{% else %}out-of-stock{% endif %}">
-                  {% if post.availability %}<i class="fa-solid fa-check me-1"></i>В наличии{% else %}<i class="fa-solid fa-times me-1"></i>Нет в наличии{% endif %}
-                </span>
+          </div>
+          <div class="product-body">
+            <h5 class="product-title">{{ post.name }}</h5>
+            <p class="product-description">{{ post.description|default:'Без описания'|truncatechars:120 }}</p>
+            <div class="product-meta">
+              <div class="product-price">
+                <span class="price-amount">{{ post.price }}</span>
+                <span class="price-currency">₽</span>
               </div>
-              <div class="product-actions">
-                <button class="btn btn-primary glass-btn-primary w-100" data-bs-toggle="modal" data-bs-target="#productModal" data-name="{{ post.name }}" data-img="{{ post.img_url }}" data-desc="{{ post.description }}" data-price="{{ post.price }}">
-                  <i class="fa-solid fa-info-circle me-2"></i>Подробнее
-                </button>
-              </div>
+              <span class="availability-badge {% if post.availability %}in-stock{% else %}out-of-stock{% endif %}">
+                {% if post.availability %}<i class="fa-solid fa-check me-1"></i>В наличии{% else %}<i
+                  class="fa-solid fa-times me-1"></i>Нет в наличии{% endif %}
+              </span>
+            </div>
+            <div class="product-actions">
+              <button class="btn btn-primary glass-btn-primary w-100" data-bs-toggle="modal"
+                data-bs-target="#productModal" data-name="{{ post.name }}" data-img="{{ post.img_url }}"
+                data-desc="{{ post.description }}" data-price="{{ post.price }}">
+                <i class="fa-solid fa-info-circle me-2"></i>Подробнее
+              </button>
             </div>
           </div>
         </div>
+      </div>
       {% empty %}
-        <div class="col-12">
-          <div class="empty-state glass-card text-center py-5">
-            <i class="fa-solid fa-search fa-3x text-muted mb-3"></i>
-            <h4>Ничего не найдено</h4>
-            <p class="text-muted">Попробуйте изменить параметры поиска или фильтры</p>
-          </div>
+      <div class="col-12">
+        <div class="empty-state glass-card text-center py-5">
+          <i class="fa-solid fa-search fa-3x text-muted mb-3"></i>
+          <h4>Ничего не найдено</h4>
+          <p class="text-muted">Попробуйте изменить параметры поиска или фильтры</p>
         </div>
+      </div>
       {% endfor %}
     </div>
   </div>
@@ -124,7 +134,7 @@
             <small><strong>Демо:</strong> Это демонстрация модального окна товара</small>
           </div>
         </div>
-        
+
         <div class="row g-4 align-items-start">
           <div class="col-md-6">
             <div class="modal-image-container">

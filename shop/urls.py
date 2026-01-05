@@ -1,3 +1,4 @@
+import os
 from django.contrib import admin
 from django.urls import path, include
 from users import views as userViews
@@ -13,5 +14,6 @@ urlpatterns = [
     path('exit/', authViews.LogoutView.as_view(template_name='web/index.html'), name="exit"),
 ]
 
-if settings.DEBUG:
+if settings.DEBUG or os.environ.get('VERCEL_URL'):
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

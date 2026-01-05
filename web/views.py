@@ -16,7 +16,7 @@ def shop(request):
             'description': 'Качественный комплект вкладышей для ремонта двигателя.',
             'price': 12990,
             'availability': True,
-            'group': 'mobile',
+            'group': 'engine',
             'img_url': '/pictures/product_image/1_vkladish.jpg'
         },
         {
@@ -24,7 +24,7 @@ def shop(request):
             'description': 'Набор поршневых колец для различных моделей двигателей.',
             'price': 8500,
             'availability': True,
-            'group': 'mobile',
+            'group': 'engine',
             'img_url': '/pictures/product_image/3_rings.jpg'
         },
         {
@@ -32,7 +32,7 @@ def shop(request):
             'description': 'Оригинальный капот для автомобиля.',
             'price': 35000,
             'availability': True,
-            'group': 'pc',
+            'group': 'body',
             'img_url': '/pictures/product_image/капот.jpg'
         },
         {
@@ -40,7 +40,7 @@ def shop(request):
             'description': 'Автоматическая коробка передач, б/у, в отличном состоянии.',
             'price': 75000,
             'availability': True,
-            'group': 'notebook',
+            'group': 'transmission',
             'img_url': '/pictures/product_image/коробка_передач.jpg'
         },
         {
@@ -56,7 +56,7 @@ def shop(request):
             'description': 'Редуктор для заднеприводных автомобилей.',
             'price': 22000,
             'availability': True,
-            'group': 'notebook',
+            'group': 'transmission',
             'img_url': '/pictures/product_image/редуктор.jpg'
         },
         {
@@ -64,7 +64,7 @@ def shop(request):
             'description': 'Комплект передних крыльев, левое и правое.',
             'price': 18000,
             'availability': True,
-            'group': 'pc',
+            'group': 'body',
             'img_url': '/pictures/product_image/крылья.jpg'
         },
         {
@@ -80,7 +80,7 @@ def shop(request):
             'description': 'Комплект передних фар с LED-элементами.',
             'price': 45000,
             'availability': True,
-            'group': 'pc',
+            'group': 'body',
             'img_url': '/pictures/product_image/оптика_автомобильная.jpg'
         },
         {
