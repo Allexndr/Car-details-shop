@@ -1,3 +1,22 @@
+[project]
+name = "car-details-shop"
+version = "0.1.0"
+description = "Modern Django auto parts store"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "Django>=4.2,<6",
+    "django-crispy-forms>=2.1",
+    "crispy-bootstrap4>=2022.1",
+    "whitenoise>=6.5",
+    "python-environ>=0.4.54",
+    "Pillow>=10.0",
+    "python-decouple>=3.8",
+    "dj-database-url>=2.1.0",
+    "gunicorn>=21.2.0",
+    "psycopg2-binary>=2.9.9",
+]
+
 [tool.black]
 line-length = 100
 target-version = ["py312"]
@@ -5,9 +24,3 @@ target-version = ["py312"]
 [tool.isort]
 profile = "black"
 line_length = 100
-
-
-
-
-
-
