@@ -59,30 +59,75 @@
     </div>
 
     <div class="row g-4">
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-        <div class="premium-card text-center py-5">
-          <div class="fs-1 mb-4 text-primary"><i class="fa-solid fa-engine"></i></div>
-          <h4 class="fw-bold mb-3">Двигатель</h4>
-          <p class="text-muted small mb-4">Поршни, клапаны, коленвалы и всё для "сердца" вашего авто.</p>
-          <a href="{% url 'shop' %}?group=engine" class="btn btn-sm btn-outline-primary rounded-pill px-4">Смотреть</a>
+      <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+        <div class="premium-card text-center py-4 h-100 hover-lift">
+          <div class="fs-1 mb-3 text-primary"><i class="fa-solid fa-engine"></i></div>
+          <h5 class="fw-bold mb-2">Двигатель</h5>
+          <p class="text-muted small mb-3">Поршни, клапаны, коленвалы и всё для "сердца" вашего авто.</p>
+          <a href="{% url 'shop' %}?group=engine" class="btn btn-sm btn-primary rounded-pill px-4">Смотреть</a>
         </div>
       </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-        <div class="premium-card text-center py-5">
-          <div class="fs-1 mb-4 text-primary"><i class="fa-solid fa-microchip"></i></div>
-          <h4 class="fw-bold mb-3">Электроника</h4>
-          <p class="text-muted small mb-4">Датчики, ЭБУ, блоки управления и современная оптика.</p>
+      <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+        <div class="premium-card text-center py-4 h-100 hover-lift">
+          <div class="fs-1 mb-3 text-primary"><i class="fa-solid fa-microchip"></i></div>
+          <h5 class="fw-bold mb-2">Электроника</h5>
+          <p class="text-muted small mb-3">Датчики, ЭБУ, блоки управления и современная оптика.</p>
           <a href="{% url 'shop' %}?group=electronics"
-            class="btn btn-sm btn-outline-primary rounded-pill px-4">Смотреть</a>
+            class="btn btn-sm btn-primary rounded-pill px-4">Смотреть</a>
         </div>
       </div>
-      <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-        <div class="premium-card text-center py-5">
-          <div class="fs-1 mb-4 text-primary"><i class="fa-solid fa-gears"></i></div>
-          <h4 class="fw-bold mb-3">Трансмиссия</h4>
-          <p class="text-muted small mb-4">Коробки передач, сцепление и элементы привода.</p>
+      <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+        <div class="premium-card text-center py-4 h-100 hover-lift">
+          <div class="fs-1 mb-3 text-primary"><i class="fa-solid fa-gears"></i></div>
+          <h5 class="fw-bold mb-2">Трансмиссия</h5>
+          <p class="text-muted small mb-3">Коробки передач, сцепление и элементы привода.</p>
           <a href="{% url 'shop' %}?group=transmission"
-            class="btn btn-sm btn-outline-primary rounded-pill px-4">Смотреть</a>
+            class="btn btn-sm btn-primary rounded-pill px-4">Смотреть</a>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+        <div class="premium-card text-center py-4 h-100 hover-lift">
+          <div class="fs-1 mb-3 text-primary"><i class="fa-solid fa-car"></i></div>
+          <h5 class="fw-bold mb-2">Кузов</h5>
+          <p class="text-muted small mb-3">Капоты, крылья, бамперы и кузовные детали.</p>
+          <a href="{% url 'shop' %}?group=body"
+            class="btn btn-sm btn-primary rounded-pill px-4">Смотреть</a>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="500">
+        <div class="premium-card text-center py-4 h-100 hover-lift">
+          <div class="fs-1 mb-3 text-primary"><i class="fa-solid fa-compact-disc"></i></div>
+          <h5 class="fw-bold mb-2">Тормоза</h5>
+          <p class="text-muted small mb-3">Диски, колодки, суппорты и тормозные системы.</p>
+          <a href="{% url 'shop' %}?group=brakes"
+            class="btn btn-sm btn-primary rounded-pill px-4">Смотреть</a>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="600">
+        <div class="premium-card text-center py-4 h-100 hover-lift">
+          <div class="fs-1 mb-3 text-primary"><i class="fa-solid fa-oil-can"></i></div>
+          <h5 class="fw-bold mb-2">Масла и жидкости</h5>
+          <p class="text-muted small mb-3">Моторные масла, тормозная жидкость и антифриз.</p>
+          <a href="{% url 'shop' %}?group=fluids"
+            class="btn btn-sm btn-primary rounded-pill px-4">Смотреть</a>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="700">
+        <div class="premium-card text-center py-4 h-100 hover-lift">
+          <div class="fs-1 mb-3 text-primary"><i class="fa-solid fa-wrench"></i></div>
+          <h5 class="fw-bold mb-2">Аксессуары</h5>
+          <p class="text-muted small mb-3">Инструменты, чехлы и дополнительные аксессуары.</p>
+          <a href="{% url 'shop' %}?group=accessories"
+            class="btn btn-sm btn-primary rounded-pill px-4">Смотреть</a>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="800">
+        <div class="premium-card text-center py-4 h-100 hover-lift">
+          <div class="fs-1 mb-3 text-primary"><i class="fa-solid fa-filter"></i></div>
+          <h5 class="fw-bold mb-2">Фильтры</h5>
+          <p class="text-muted small mb-3">Воздушные, масляные и топливные фильтры.</p>
+          <a href="{% url 'shop' %}?group=filters"
+            class="btn btn-sm btn-primary rounded-pill px-4">Смотреть</a>
         </div>
       </div>
     </div>

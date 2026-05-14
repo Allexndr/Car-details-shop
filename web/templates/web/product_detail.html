@@ -1,0 +1,129 @@
+{% extends 'web/main.html' %}
+{% load static %}
+
+{% block title_page %}{{ product.name }} - AutoParts-Pro{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="py-3 bg-light">
+  <div class="container">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a href="{% url 'home' %}">Главная</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'shop' %}">Магазин</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+    </ol>
+  </div>
+</nav>
+
+<!-- Product Detail -->
+<section class="py-5">
+  <div class="container">
+    <div class="row g-5">
+      <!-- Product Image -->
+      <div class="col-lg-6" data-aos="fade-right">
+        <div class="premium-card p-4">
+          <img src="{{ product.img.url }}" alt="{{ product.name }}" class="img-fluid rounded-3 w-100" style="max-height: 500px; object-fit: contain;">
+        </div>
+      </div>
+      
+      <!-- Product Info -->
+      <div class="col-lg-6" data-aos="fade-left">
+        <div class="mb-4">
+          <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill mb-3">{{ product.brand }}</span>
+          <h1 class="fw-bold mb-3">{{ product.name }}</h1>
+          <p class="text-muted mb-4">{{ product.description }}</p>
+          
+          <div class="d-flex align-items-center gap-4 mb-4">
+            <div class="fs-2 fw-bold text-primary">{{ product.price }} ₸</div>
+            {% if product.stock > 0 %}
+              <span class="badge bg-success-subtle text-success px-3 py-2 rounded-pill">В наличии: {{ product.stock }} шт.</span>
+            {% else %}
+              <span class="badge bg-danger-subtle text-danger px-3 py-2 rounded-pill">Нет в наличии</span>
+            {% endif %}
+          </div>
+          
+          <div class="mb-4">
+            <small class="text-muted">Артикул: {{ product.sku }}</small>
+          </div>
+          
+          <div class="d-flex gap-3 mb-5">
+            <button class="btn-premium btn-lg px-5">
+              <i class="fa-solid fa-cart-plus me-2"></i> В корзину
+            </button>
+            <button class="btn btn-outline-primary btn-lg px-4">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Product Features -->
+        {% if product.features %}
+        <div class="premium-card p-4 mb-4">
+          <h5 class="fw-bold mb-3">Характеристики</h5>
+          <ul class="list-unstyled mb-0">
+            {% for feature in product.features %}
+            <li class="d-flex align-items-center gap-2 mb-2">
+              <i class="fa-solid fa-check text-success"></i>
+              <span>{{ feature }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        
+        <!-- Delivery Info -->
+        <div class="premium-card p-4">
+          <h5 class="fw-bold mb-3">Доставка и гарантия</h5>
+          <div class="d-flex gap-4">
+            <div class="flex-shrink-0">
+              <div class="fs-2 text-primary"><i class="fa-solid fa-truck-fast"></i></div>
+            </div>
+            <div>
+              <h6 class="fw-bold">Экспресс доставка</h6>
+              <p class="text-muted small mb-0">Доставка по Казахстану 1-3 дня</p>
+            </div>
+          </div>
+          <div class="d-flex gap-4 mt-3">
+            <div class="flex-shrink-0">
+              <div class="fs-2 text-primary"><i class="fa-solid fa-shield-check"></i></div>
+            </div>
+            <div>
+              <h6 class="fw-bold">Гарантия качества</h6>
+              <p class="text-muted small mb-0">Гарантия 12 месяцев на все товары</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Related Products -->
+{% if related_products %}
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="fw-bold mb-5" data-aos="fade-up">Похожие товары</h2>
+    <div class="row g-4">
+      {% for related in related_products %}
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}00">
+        <div class="premium-card h-100">
+          <div class="position-relative">
+            <img src="{{ related.img.url }}" alt="{{ related.name }}" class="img-fluid rounded-top w-100" style="height: 200px; object-fit: cover;">
+            <span class="badge bg-primary position-absolute top-3 end-3">{{ related.brand }}</span>
+          </div>
+          <div class="p-4">
+            <h5 class="fw-bold mb-2">{{ related.name }}</h5>
+            <p class="text-muted small mb-3">{{ related.description|truncatewords:15 }}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fw-bold text-primary">{{ related.price }} ₸</span>
+              <a href="{% url 'product_detail' related.id %}" class="btn btn-sm btn-outline-primary rounded-pill">Подробнее</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endblock content %}
